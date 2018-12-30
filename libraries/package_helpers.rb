@@ -111,10 +111,8 @@ module Asdf
     def nodejs_deps
       deps = []
 
-      asdf_script 'install nodejs package dependencies' do
-        user asdf_user
+      script 'install nodejs package dependencies' do
         code 'bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring'
-        live_stream new_resource.live_stream
         only_if { ::Dir.exist?("#{asdf_path}/plugins/nodejs") }
       end
 
